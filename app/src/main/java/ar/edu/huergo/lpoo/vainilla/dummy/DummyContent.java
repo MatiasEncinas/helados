@@ -49,14 +49,14 @@ public class DummyContent {
         JSONArray gustos;
         try {
             JSONObject obj = new JSONObject(datos);
-            gustos = (JSONArray) obj.get("gustos");
+            gustos = obj.getJSONArray("gustos");
 
             // Add some sample items.
             for (int i = 0; i < gustos.length(); i++) {
                 //addItem(createDummyItem(i));
-                JSONObject gusto = (JSONObject) gustos.get(i);
-                Double estrellas = (Double) gusto.get("estrellas");
-                String nombre = (String) gusto.get("nombre");
+                JSONObject gusto = gustos.getJSONObject(i);
+                Double estrellas = gusto.getDouble("estrellas");
+                String nombre = gusto.getString("nombre");
                 addItem(new DummyItem(
                         String.valueOf(estrellas),
                         nombre,
