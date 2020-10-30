@@ -1,0 +1,52 @@
+{
+    "gustos": [
+        {
+            "nombre": "Menta Granizada",
+            "estrellas": 5.0
+        },
+        {
+            "nombre": "Dulce de Leche Granizado",
+            "estrellas": 4.5
+        },
+        {
+            "nombre": "Dulce de Leche Chocotorta",
+            "estrellas": 4.6
+        },
+        {
+            "nombre": "Chocolate con Almendras",
+            "estrellas": 4.5
+        },
+        {
+            "nombre": "Crema Americana",
+            "estrellas": 4.2
+        },
+        {
+            "nombre": "Frutilla",
+            "estrellas": 3.5
+        },
+        {
+            "nombre": "Tramontana",
+            "estrellas": 4.5
+        },
+        {
+            "nombre": "Banana Split",
+            "estrellas": 4.0
+        },
+        {
+            "nombre": "Monster",
+            "estrellas": 9.9
+        },
+        {
+            "nombre": "Limon",
+            "estrellas": 4.5
+        },
+        {
+            "nombre": "Frambuesa",
+            "estrellas": 4.1
+        },
+        {
+            "nombre": "Sambayon",
+            "estrellas": 5.0
+        }
+    ]
+}
