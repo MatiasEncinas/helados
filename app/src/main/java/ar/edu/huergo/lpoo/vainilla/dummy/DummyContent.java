@@ -1,5 +1,8 @@
 package ar.edu.huergo.lpoo.vainilla.dummy;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -30,13 +33,12 @@ public class DummyContent {
     private static final int COUNT = 50;
 
     static {
-        ITEMS.clear();
 
-        String datos = "{  \"gustos\": [ "
+        String datosHardcodeado = "{  \"gustos\": [ "
                 + " { \"nombre\": \"Menta Granizada\", \"estrellas\": 5.0  },"
+                + " { \"nombre\": \"Vainilla\", \"estrellas\": 5.0  },"
                 + " { \"nombre\": \"Menta Granizada\", \"estrellas\": 5.0  },"
-                + " { \"nombre\": \"Menta Granizada\", \"estrellas\": 5.0  },"
-                + " { \"nombre\": \"Menta Granizada\", \"estrellas\": 5.0  },"
+                + " { \"nombre\": \"Chocolate\", \"estrellas\": 99.99  },"
                 + " { \"nombre\": \"Menta Granizada\", \"estrellas\": 5.0  },"
                 + " { \"nombre\": \"Menta Granizada\", \"estrellas\": 5.0  },"
                 + " { \"nombre\": \"Menta Granizada\", \"estrellas\": 5.0  },"
@@ -46,9 +48,21 @@ public class DummyContent {
                 + " { \"nombre\": \"Dulce de Leche Granizado\", \"estrellas\": 4.5 }"
                 + " ] }";
 
+        JSONObject obj;
+        try {
+            obj = new JSONObject(datosHardcodeado);
+            llenarGustos(obj);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public static void llenarGustos(JSONObject obj) {
+        ITEMS.clear();
+
         JSONArray gustos;
         try {
-            JSONObject obj = new JSONObject(datos);
             gustos = obj.getJSONArray("gustos");
 
             // Add some sample items.

@@ -8,9 +8,13 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import ar.edu.huergo.lpoo.vainilla.dummy.DummyContent;
 
@@ -20,9 +24,9 @@ import ar.edu.huergo.lpoo.vainilla.dummy.DummyContent;
 public class GustosFragment extends Fragment {
 
     // TODO: Customize parameter argument names
-    private static final String ARG_COLUMN_COUNT = "column-count";
+    private static final String ARG_GUSTOS_DATA = "gustos-data";
     // TODO: Customize parameters
-    private int mColumnCount = 1;
+    private JSONObject mGustosData = new JSONObject();
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -33,10 +37,10 @@ public class GustosFragment extends Fragment {
 
     // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
-    public static GustosFragment newInstance(int columnCount) {
+    public static GustosFragment newInstance(String gustosData) {
         GustosFragment fragment = new GustosFragment();
         Bundle args = new Bundle();
-        args.putInt(ARG_COLUMN_COUNT, columnCount);
+        args.putString(ARG_GUSTOS_DATA, gustosData);
         fragment.setArguments(args);
         return fragment;
     }
@@ -46,7 +50,13 @@ public class GustosFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         if (getArguments() != null) {
-            mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
+            try {
+                mGustosData = new JSONObject(getArguments().getString(ARG_GUSTOS_DATA));
+            } catch (JSONException e) {
+                // esto no deberia pasar porque venimos de volley y eso ya chequeo
+                // que tuvieramos un json valido
+                e.printStackTrace();
+            }
         }
     }
 
@@ -59,11 +69,8 @@ public class GustosFragment extends Fragment {
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
             RecyclerView recyclerView = (RecyclerView) view;
-            if (mColumnCount <= 1) {
-                recyclerView.setLayoutManager(new LinearLayoutManager(context));
-            } else {
-                recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
-            }
+            recyclerView.setLayoutManager(new LinearLayoutManager(context));
+            DummyContent.llenarGustos(mGustosData);
             recyclerView.setAdapter(new MyGustoRecyclerViewAdapter(DummyContent.ITEMS));
         }
         return view;

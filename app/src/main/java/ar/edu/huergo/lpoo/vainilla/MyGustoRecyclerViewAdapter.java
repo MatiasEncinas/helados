@@ -29,7 +29,6 @@ public class MyGustoRecyclerViewAdapter extends RecyclerView.Adapter<MyGustoRecy
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        Log.d("QUEONDA", "onCreateViewHolder");
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.fragment_gusto, parent, false);
         return new ViewHolder(view);
@@ -37,9 +36,6 @@ public class MyGustoRecyclerViewAdapter extends RecyclerView.Adapter<MyGustoRecy
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        Log.d("QUEONDA",
-                "bindeando (reciclando) el elemento " + holder +
-                        " en la posicion " + position + "!");
         // onRecycle
 
         holder.mItem = mValues.get(position);
