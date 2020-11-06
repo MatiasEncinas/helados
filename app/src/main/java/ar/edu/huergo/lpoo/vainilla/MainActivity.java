@@ -18,6 +18,7 @@ import org.json.JSONObject;
 
 import java.net.CookieHandler;
 import java.net.CookieManager;
+import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -129,8 +130,12 @@ public class MainActivity extends AppCompatActivity {
         /*
         EJEMPLO DE POST
         */
+        HashMap<String, String> params = new HashMap<String, String>();
+        params.put("saludo", "holaquetal");
+        params.put("color", "violeta");
+
         queue.add(new JsonObjectRequest(
-                Request.Method.POST, "https://httpbin.org/post", null,
+                Request.Method.POST, "https://httpbin.org/post", new JSONObject(params),
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject res) {
