@@ -126,6 +126,23 @@ public class MainActivity extends AppCompatActivity {
         }));
         */
 
+        /*
+        EJEMPLO DE POST
+        */
+        queue.add(new JsonObjectRequest(
+                Request.Method.POST, "https://httpbin.org/post", null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject res) {
+                        Log.d("HOLA", "el server respondio al post con este json: " + res);
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("HOLA", "That didn't work!");
+                Log.d("HOLA", error.getMessage());
+            }
+        }));
 
 
 
